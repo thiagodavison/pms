@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
  * A Destination object encapsulates a provider-specific address.

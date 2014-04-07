@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
  * A ServerSessionPool object is an object implemented by an application server 
@@ -17,20 +17,14 @@ namespace Umbrella\Pms;
  * it cannot deliver new messages until a ServerSession is eventually 
  * returned.
  * 
- * @author Italo Lelis de Vietro <italolelis@lellysinformatica.cm>
+ * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
  */
-interface IServerSession
+interface IServerSessionPool
 {
 
     /**
-     * Return the ServerSession's Session.
-     * @return ISession
-     */
-    public function getSession();
-
-    /**
-     * Cause the Session's run method to be called to process messages that were just assigned to it.s
+     * Return a server session from the pool
      * @return IServerSession
      */
-    public function start();
+    public function getServerSession();
 }

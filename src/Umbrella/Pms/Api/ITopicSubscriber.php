@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
  * A client uses a TopicSubscriber object to receive messages that have been 

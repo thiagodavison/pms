@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms\Message;
+namespace Umbrella\Pms\Api\Message;
 
 /**
  * An ObjectMessage object is used to send a message that contains a 

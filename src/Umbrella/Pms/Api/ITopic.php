@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
  * A Topic object encapsulates a provider-specific topic name. 
@@ -28,7 +28,7 @@ namespace Umbrella\Pms;
  * 
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.cm>
  */
-interface ITopic
+interface ITopic extends IDestination
 {
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
   A Session object is a single-threaded context for producing and
@@ -98,18 +98,6 @@ interface ISession
     const SESSION_TRANSACTED = 4;
 
     /**
-     * Creates a QueueBrowser object to peek at the messages on the 
-     * specified queue using a message selector.
-     */
-    public function createBrowser(Queue $queue, $messageSelector = null);
-
-    /**
-     * Creates a BytesMessage object.
-     * @return IBytesMessage
-     */
-    public function createBytesMessage();
-
-    /**
      * Creates a MessageConsumer for the specified destination, specifying a 
      * message selector and the noLocal parameter.
      * @return IMessageConsumer
@@ -137,18 +125,17 @@ interface ISession
     public function createDurableSubscriber(ITopic $topic, $name, $messageSelector = null, $noLocal = true);
 
     /**
-     * Creates a MapMessage object.
-     * 
-     * @return IMapMessage
-     */
-    public function createMapMessage();
-
-    /**
      * Creates a Message object.
      * 
      * @return IMessage
      */
     public function createMessage();
+
+    /**
+     * Creates an initialized TextMessage object.
+     * @return Message\ITextMessage
+     */
+    public function createTextMessage($text = null);
 
     /**
      * Creates an initialized ObjectMessage object.
@@ -160,41 +147,16 @@ interface ISession
     /**
      * Creates a MessageProducer to send messages to the specified destination.
      * 
-     * @return IMessageProducer
+     * @return Message\IMessageProducer
      */
     public function createProducer(IDestination $destination);
 
     /**
-     * Creates a Queue object which encapsulates a specified provider-specific 
-     * queue name.
+     * Creates a Queue object which encapsulates a specified provider-specific.
      * 
      * @return \Easy\Collections\IQueue
      */
-    public function createQueue($queueName);
-
-    /**
-     * Creates a StreamMessage object.
-     * @return IStreamMessage
-     */
-    public function createStreamMessage();
-
-    /**
-     * Creates a TemporaryQueue object.
-     * @return ITemporaryQueue
-     */
-    public function createTemporaryQueue();
-
-    /**
-     * Creates a TemporaryTopic object.
-     * @return ITemporaryTopic
-     */
-    public function createTemporaryTopic();
-
-    /**
-     * Creates an initialized TextMessage object.
-     * @return ITextMessage
-     */
-    public function createTextMessage($text = null);
+    public function createQueue();
 
     /**
      * Creates a Topic object which encapsulates a specified provider-specific 
@@ -214,30 +176,6 @@ interface ISession
      * @return IMessageListener
      */
     public function getMessageListener();
-
-    /**
-     * Indicates whether the session is in transacted mode.
-     * @return boolean
-     */
-    public function isTransacted();
-
-    /**
-     * Commits all messages done in this transaction and releases any locks 
-     * currently held.
-     */
-    public function commit();
-
-    /**
-     * Stops message delivery in this session, and restarts message delivery 
-     * with the oldest unacknowledged message.
-     */
-    public function recover();
-
-    /**
-     * Rolls back any messages done in this transaction and releases any 
-     * locks currently held.
-     */
-    public function rollback();
 
     /**
      * Sets the session's distinguished message listener (optional).

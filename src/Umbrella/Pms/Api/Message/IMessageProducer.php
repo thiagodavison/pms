@@ -1,9 +1,9 @@
 <?php
 
-namespace Umbrella\Pms\Message;
+namespace Umbrella\Pms\Api\Message;
 
 use Umbrella\Pms\ICompletionListener;
-use Umbrella\Pms\IDestination;
+use Umbrella\Pms\IDeliveryMode;
 
 /**
  * The Message interface is the root interface of all PMS messages. It defines 
@@ -14,29 +14,17 @@ use Umbrella\Pms\IDestination;
 interface IMessageProducer
 {
 
-    public function getDeliveryDelay();
-
     public function getDeliveryMode();
 
     public function getDestination();
 
-    public function getDisabledMessageID();
-
     public function getPriority();
 
-    public function getTimeToLive();
+    public function setDeliveryMode($deliveryMode);
 
-    public function setDeliveryDelay();
+    public function setDestination($destination);
 
-    public function setDeliveryMode();
-
-    public function setDestination();
-
-    public function setDisabledMessageID();
-
-    public function setPriority();
-
-    public function setTimeToLive();
+    public function setPriority($priority);
 
     /**
      * Sends a message to a destination for an unidentified message producer, 
@@ -45,5 +33,5 @@ interface IMessageProducer
      * notifying the specified CompletionListener when the operation has 
      * completed.
      */
-    public function send(IDestination $destination, IMessage $message, $deliveryMode = IMessage::DEFAULT_DELIVERY_MODE, $priority = IMessage::DEFAULT_PRIORITY, $timeToLive = IMessage::DEFAULT_TIME_TO_LIVE, ICompletionListener $completionListener = null);
+    public function send(IMessage $message, $deliveryMode = IDeliveryMode::PERSISTENT, $priority = IMessage::DEFAULT_PRIORITY, ICompletionListener $completionListener = null);
 }

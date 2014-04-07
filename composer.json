@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "easyframework/collections": "2.0.*"
+        "easyframework/collections": "2.0.*",
+        "doctrine/orm": "~2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"

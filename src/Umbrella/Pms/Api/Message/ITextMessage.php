@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms\Message;
+namespace Umbrella\Pms\Api\Message;
 
 /**
  * A TextMessage object is used to send a message containing a string.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Api;
 
 /**
  * A Connection object is a client's active connection to its JMS provider. 
@@ -106,7 +106,7 @@ interface IConnection
      * Sets the ExceptionListener for this connection
      * @return IConnection
      */
-    public function setExceptionListener(ExceptionListener $Listener);
+    public function setExceptionListener(IExceptionListener $listener);
 
     /**
      * Starts (or restarts) a connection's delivery of incoming messages.

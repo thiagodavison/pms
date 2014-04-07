@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms\Exception;
+namespace Umbrella\Pms\Api\Exception;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.cm>
