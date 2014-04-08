@@ -1,15 +1,16 @@
 <?php
 
-require 'vendor/autoload.php';
+define('QUEUE', 21671);
+$queue = msg_get_queue(QUEUE);
 
+$object = new stdclass;
+$object->name = 'foo';
+$object->id = uniqid();
 
-$session = new Umbrella\Pms\Session();
-
-$queue = $session->createTopic("test");
-
-$message = $session->createObjectMessage(new stdClass());
-$queue->enqueue($message);
-
-$producer = $session->createProducer();
-$producer->send($queue);
-
+if (msg_send($queue, 1, $object)) {
+    echo "added to queue  \n";
+    // you can use the msg_stat_queue() function to see queue status
+    print_r(msg_stat_queue($queue));
+} else {
+    echo "could not add message to queue \n";
+}

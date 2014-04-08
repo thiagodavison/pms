@@ -11,11 +11,7 @@ namespace Umbrella\Pms\Api\Message;
 interface IMessage
 {
 
-    public function getAcknowledge();
+    public function getId();
 
-    public function getBody();
-
-    public function setAcknowledge($acknowledge);
-
-    public function setBody($body);
+    public function setId($id);
 }

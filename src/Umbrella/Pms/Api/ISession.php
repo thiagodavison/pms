@@ -107,7 +107,7 @@ interface ISession
     /**
      * Creates a Topic object which encapsulates a specified provider-specific 
      * topic name.
-     * @return ITopic
+     * @return IMessageQueue
      */
-    public function createTopic($topicName);
+    public function createQueue($topicName);
 }

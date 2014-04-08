@@ -9,8 +9,7 @@
 namespace Umbrella\Pms;
 
 use Serializable;
-use Umbrella\Pms\Api\IDestination;
-use Umbrella\Pms\Api\IQueue;
+use Umbrella\Pms\Api\IMessageQueue;
 use Umbrella\Pms\Api\ISession;
 use Umbrella\Pms\Message\Message;
 use Umbrella\Pms\Message\MessageConsumer;
@@ -46,14 +45,14 @@ class Session implements ISession
         return new MessageConsumer();
     }
 
-    public function createProducer(IQueue $queue)
+    public function createProducer(IMessageQueue $queue)
     {
         return new MessageProducer($queue);
     }
 
-    public function createTopic($topicName)
+    public function createQueue($topicName)
     {
-        return new Queue($topicName);
+        return new MessageQueue($topicName);
     }
 
 }

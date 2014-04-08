@@ -9,7 +9,7 @@ use Umbrella\Pms\Api\Message\IMessage;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="tb_messages")
  */
-class Message implements IMessage
+abstract class Message implements IMessage
 {
 
     /**

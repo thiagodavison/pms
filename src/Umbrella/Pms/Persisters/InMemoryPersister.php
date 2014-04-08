@@ -11,13 +11,13 @@ namespace Umbrella\Pms\Delivery;
 use Doctrine\ORM\EntityManager;
 use Umbrella\Pms\Api\IAcknowledge;
 use Umbrella\Pms\Api\IMessageListener;
-use Umbrella\Pms\Api\IQueue;
-use Umbrella\Pms\Queue;
+use Umbrella\Pms\Api\IMessageQueue;
+use Umbrella\Pms\MessageQueue;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
  */
-class DocrineDelivery implements IDelivery
+class DoctrinePersister implements IPersister
 {
 
     protected $em;
@@ -49,7 +49,7 @@ class DocrineDelivery implements IDelivery
         $this->entityClass = $entityClass;
     }
 
-    public function send(IQueue $queue, IMessageListener $messageListener)
+    public function send(IMessageQueue $queue, IMessageListener $messageListener)
     {
         foreach ($queue as $item) {
             $messageListener->onMessage($item);
@@ -65,7 +65,7 @@ class DocrineDelivery implements IDelivery
         $results = $this->em->getRepository($this->entityClass)->findBy(array(
             'name' => $topicName
         ));
-        $queue = new Queue();
+        $queue = new MessageQueue();
         $queue->enqueueMultiple($results);
         return $this->queue = $queue;
     }
@@ -82,6 +82,21 @@ class DocrineDelivery implements IDelivery
     public function __destruct()
     {
         $this->remove($this->queue);
+    }
+
+    public function complete(IMessage $message)
+    {
+        
+    }
+
+    public function get($id)
+    {
+        return $this->em->getRepository($this->entityClass)->find($id);
+    }
+
+    public function save(IMessage $message)
+    {
+        $this->em->persist($message);
     }
 
 }

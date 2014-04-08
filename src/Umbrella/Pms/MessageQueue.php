@@ -8,12 +8,14 @@
 
 namespace Umbrella\Pms;
 
-use Easy\Collections\Queue as BaseQueue;
+use Easy\Collections\Queue;
+use Umbrella\Pms\Api\IMessageQueue;
+use Umbrella\Pms\Api\Message\IMessage;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
  */
-class Queue extends BaseQueue implements Api\IQueue
+class MessageQueue extends Queue implements IMessageQueue
 {
 
     protected $name;
@@ -34,7 +36,7 @@ class Queue extends BaseQueue implements Api\IQueue
         return $this;
     }
 
-    public function enqueue(Api\Message\IMessage $item)
+    public function enqueue(IMessage $item)
     {
         parent::enqueue($item);
     }

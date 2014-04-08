@@ -9,9 +9,9 @@
 namespace Umbrella\Pms\Message;
 
 use Umbrella\Pms\Api\ICompletionListener;
-use Umbrella\Pms\Api\IQueue;
+use Umbrella\Pms\Api\IMessageQueue;
 use Umbrella\Pms\Api\Message\IMessageProducer;
-use Umbrella\Pms\Delivery\IDelivery;
+use Umbrella\Pms\Delivery\IPersister;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
@@ -19,7 +19,7 @@ use Umbrella\Pms\Delivery\IDelivery;
 class MessageProducer implements IMessageProducer
 {
 
-    public function send(IQueue $queue, IDelivery $deliveryMode = null, ICompletionListener $completionListener = null)
+    public function send(IMessageQueue $queue, IPersister $deliveryMode = null, ICompletionListener $completionListener = null)
     {
         if ($deliveryMode === null) {
             $deliveryMode = new InMemoryDeliver();
