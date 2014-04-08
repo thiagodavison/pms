@@ -14,5 +14,5 @@ interface ITopicPublisher extends Message\IMessageProducer
      */
     public function getTopic();
 
-    public function publish(Message\IMessage $message, $deliveryMode = Message\IMessage::DEFAULT_DELIVERY_MODE, $timeToLive = Message\IMessage::DEFAULT_TIME_TO_LIVE);
+    public function publish(Message\IMessage $message, $deliveryMode = IDeliveryMode::PERSISTENT);
 }

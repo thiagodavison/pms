@@ -20,5 +20,5 @@ interface ITextMessage extends IMessage
 
     public function getText();
 
-    public function setText();
+    public function setText($text);
 }

@@ -20,5 +20,5 @@ interface IObjectMessage extends IMessage
 
     public function getObject();
 
-    public function setObject();
+    public function setObject(\Serializable $object);
 }

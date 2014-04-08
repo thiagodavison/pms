@@ -10,10 +10,13 @@ namespace Umbrella\Pms;
 
 use Serializable;
 use Umbrella\Pms\Api\IDestination;
-use Umbrella\Pms\Api\IMessageListener;
 use Umbrella\Pms\Api\IQueue;
 use Umbrella\Pms\Api\ISession;
-use Umbrella\Pms\Api\ITopic;
+use Umbrella\Pms\Message\Message;
+use Umbrella\Pms\Message\MessageConsumer;
+use Umbrella\Pms\Message\MessageProducer;
+use Umbrella\Pms\Message\ObjectMessage;
+use Umbrella\Pms\Message\TextMessage;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
@@ -21,69 +24,36 @@ use Umbrella\Pms\Api\ITopic;
 class Session implements ISession
 {
 
-    public function createConsumer(Api\IDestination $destination, $messageSelector = null, $noLocal = true)
-    {
-        return new MessageConsumer();
-    }
-
-    public function createDurableConsumer(Api\ITopic $topic, $name, $messageSelector = null, $noLocal = true)
-    {
-        
-    }
-
-    public function createDurableSubscriber(Api\ITopic $topic, $name, $messageSelector = null, $noLocal = true)
-    {
-        
-    }
-
     public function createMessage()
     {
-        
+        return new Message();
     }
 
     public function createObjectMessage(Serializable $object = null)
     {
-        
-    }
-
-    public function createProducer(Api\IDestination $destination)
-    {
-        return new MessageProducer($destination);
-    }
-
-    public function createQueue()
-    {
-        
+        $message = new ObjectMessage();
+        return $message->setObject($object);
     }
 
     public function createTextMessage($text = null)
     {
-        
+        $message = new TextMessage();
+        return $message->setText($text);
+    }
+
+    public function createConsumer($messageSelector = null)
+    {
+        return new MessageConsumer();
+    }
+
+    public function createProducer(IQueue $queue)
+    {
+        return new MessageProducer($queue);
     }
 
     public function createTopic($topicName)
     {
-        
-    }
-
-    public function getAcknowledgeMode()
-    {
-        
-    }
-
-    public function getMessageListener()
-    {
-        
-    }
-
-    public function setMessageListener(Api\IMessageListener $listener)
-    {
-        
-    }
-
-    public function unsubscribe($name)
-    {
-        
+        return new Queue($topicName);
     }
 
 }

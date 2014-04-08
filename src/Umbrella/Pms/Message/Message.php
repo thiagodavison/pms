@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Umbrella\Pms\Message;
 
 use Umbrella\Pms\Api\Message\IMessage;
@@ -24,10 +18,19 @@ class Message implements IMessage
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
+    protected $topic;
     protected $acknowledge;
     protected $body;
-    protected $destination;
-    protected $redelivered;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getTopic()
+    {
+        return $this->topic;
+    }
 
     public function getAcknowledge()
     {
@@ -39,14 +42,16 @@ class Message implements IMessage
         return $this->body;
     }
 
-    public function getDestination()
+    public function setId($id)
     {
-        return $this->destination;
+        $this->id = $id;
+        return $this;
     }
 
-    public function getRedelivered()
+    public function setTopic($topic)
     {
-        return $this->redelivered;
+        $this->topic = $topic;
+        return $this;
     }
 
     public function setAcknowledge($acknowledge)
@@ -58,18 +63,6 @@ class Message implements IMessage
     public function setBody($body)
     {
         $this->body = $body;
-        return $this;
-    }
-
-    public function setDestination($destination)
-    {
-        $this->destination = $destination;
-        return $this;
-    }
-
-    public function setRedelivered($redelivered)
-    {
-        $this->redelivered = $redelivered;
         return $this;
     }
 

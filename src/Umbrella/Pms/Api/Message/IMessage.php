@@ -15,15 +15,7 @@ interface IMessage
 
     public function getBody();
 
-    public function getDestination();
-
-    public function getRedelivered();
-
     public function setAcknowledge($acknowledge);
 
     public function setBody($body);
-
-    public function setDestination($destination);
-
-    public function setRedelivered($redelivered);
 }

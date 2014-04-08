@@ -8,26 +8,19 @@
 
 namespace Umbrella\Pms;
 
-use Umbrella\Pms\Api\IConnection;
-use Umbrella\Pms\Api\IDestination;
-use Umbrella\Pms\Api\IExceptionListener;
-use Umbrella\Pms\Api\IServerSessionPool;
-use Umbrella\Pms\Api\ISession;
-use Umbrella\Pms\Api\ITopic;
+use Easy\Collections\Queue as BaseQueue;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
  */
-class Queue implements Api\IQueue
+class Queue extends BaseQueue implements Api\IQueue
 {
 
     protected $name;
-    protected $queue;
 
     public function __construct($name)
     {
         $this->name = $name;
-        $this->queue = new \Easy\Collections\Queue();
     }
 
     public function getName()
@@ -35,9 +28,15 @@ class Queue implements Api\IQueue
         return $this->name;
     }
 
-    public function getQueue()
+    public function setName($name)
     {
-        return $this->queue;
+        $this->name = $name;
+        return $this;
+    }
+
+    public function enqueue(Api\Message\IMessage $item)
+    {
+        parent::enqueue($item);
     }
 
 }

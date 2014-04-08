@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\Pms\Api;
+namespace Umbrella\Pms\Api\Message;
 
 /**
  * A client uses a MessageConsumer object to receive messages from a 
@@ -32,18 +32,6 @@ interface IMessageConsumer
 {
 
     /**
-     * Gets the MessageConsumer's MessageListener.
-     * @return IMessageListener
-     */
-    public function getMessageListener();
-
-    /**
-     * Gets this message consumer's message selector expression.
-     * @return string
-     */
-    public function getMessageSelector();
-
-    /**
      * Receives the next message produced for this message consumer.
      * @return IMessage
      */
@@ -55,10 +43,4 @@ interface IMessageConsumer
      * @return IMessage
      */
     public function recieveNoWait();
-
-    /**
-     * Sets the IMessageConsumer's MessageListener.
-     * @return void
-     */
-    public function setMessageListener(IMessageListener $listener);
 }

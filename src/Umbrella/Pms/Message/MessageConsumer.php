@@ -6,26 +6,24 @@
  * and open the template in the editor.
  */
 
-namespace Umbrella\Pms;
+namespace Umbrella\Pms\Message;
 
-use Umbrella\Pms\Api\ITopic;
+use Umbrella\Pms\Api\Message\IMessageConsumer;
 
 /**
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.com>
  */
-class Topic implements ITopic
+class MessageConsumer implements IMessageConsumer
 {
 
-    protected $topicName;
-
-    public function __construct($topicName)
+    public function recieve($timeout = null)
     {
-        $this->topicName = $topicName;
+        
     }
 
-    public function getTopicName()
+    public function recieveNoWait()
     {
-        return $this->topicName;
+        
     }
 
 }

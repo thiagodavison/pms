@@ -14,18 +14,6 @@ use Umbrella\Pms\IDeliveryMode;
 interface IMessageProducer
 {
 
-    public function getDeliveryMode();
-
-    public function getDestination();
-
-    public function getPriority();
-
-    public function setDeliveryMode($deliveryMode);
-
-    public function setDestination($destination);
-
-    public function setPriority($priority);
-
     /**
      * Sends a message to a destination for an unidentified message producer, 
      * specifying delivery mode, priority and time to live, performing part of 
@@ -33,5 +21,5 @@ interface IMessageProducer
      * notifying the specified CompletionListener when the operation has 
      * completed.
      */
-    public function send(IMessage $message, $deliveryMode = IDeliveryMode::PERSISTENT, $priority = IMessage::DEFAULT_PRIORITY, ICompletionListener $completionListener = null);
+    public function send(\Umbrella\Pms\Api\IDestination $destination, $deliveryMode = IDeliveryMode::PERSISTENT, ICompletionListener $completionListener = null);
 }

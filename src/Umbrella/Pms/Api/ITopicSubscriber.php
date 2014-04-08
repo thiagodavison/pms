@@ -48,18 +48,8 @@ namespace Umbrella\Pms\Api;
  * 
  * @author Italo Lelis de Vietro <italolelis@lellysinformatica.cm>
  */
-interface ITopicSubscriber extends IMessageConsumer
+interface ITopicSubscriber
 {
 
-    /**
-     * Gets the NoLocal attribute for this subscriber.
-     * @return boolean
-     */
-    public function getNoLocal();
-
-    /**
-     * Gets the Topic associated with this subscriber.
-     * @return ITopic
-     */
-    public function getTopic();
+    public function subscribe(IMessageListener $listener);
 }

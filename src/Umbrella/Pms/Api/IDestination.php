@@ -14,5 +14,6 @@ namespace Umbrella\Pms\Api;
  */
 interface IDestination
 {
-    
+
+    public function getQueue();
 }

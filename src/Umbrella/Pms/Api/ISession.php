@@ -71,58 +71,11 @@ interface ISession
 {
 
     /**
-     * With this acknowledgment mode, the session automatically acknowledges 
-     * a client's receipt of a message either when the session has successfully 
-     * returned from a call to receive or when the message listener the session 
-     * has called to process the message successfully returns.
-     */
-    const AUTO_ACKNOWLEDGE = 1;
-
-    /**
-     * With this acknowledgment mode, the client acknowledges a consumed message
-     * by calling the message's acknowledge method.
-     */
-    const CLIENT_ACKNOWLEDGE = 2;
-
-    /**
-     * This acknowledgment mode instructs the session to lazily acknowledge 
-     * the delivery of messages.
-     */
-    const DUPS_OK_ACKNOWLEDGE = 3;
-
-    /**
-     * This value may be passed as the argument to the method 
-     * createSession(int sessionMode) on the Connection object to specify 
-     * that the session should use a local transaction.
-     */
-    const SESSION_TRANSACTED = 4;
-
-    /**
      * Creates a MessageConsumer for the specified destination, specifying a 
      * message selector and the noLocal parameter.
      * @return IMessageConsumer
      */
     public function createConsumer(IDestination $destination, $messageSelector = null, $noLocal = true);
-
-    /**
-     * Creates an unshared durable subscription on the specified topic 
-     * (if one does not already exist), specifying a message selector and 
-     * the noLocal parameter, and creates a consumer on that durable 
-     * subscription.
-     * 
-     * @return IMessageConsumer
-     */
-    public function createDurableConsumer(ITopic $topic, $name, $messageSelector = null, $noLocal = true);
-
-    /**
-     * Creates an unshared durable subscription on the specified topic 
-     * (if one does not already exist), specifying a message selector and 
-     * the noLocal parameter, and creates a consumer on that durable 
-     * subscription.
-     * 
-     * @return ITopicSubscriber
-     */
-    public function createDurableSubscriber(ITopic $topic, $name, $messageSelector = null, $noLocal = true);
 
     /**
      * Creates a Message object.
@@ -152,38 +105,9 @@ interface ISession
     public function createProducer(IDestination $destination);
 
     /**
-     * Creates a Queue object which encapsulates a specified provider-specific.
-     * 
-     * @return \Easy\Collections\IQueue
-     */
-    public function createQueue();
-
-    /**
      * Creates a Topic object which encapsulates a specified provider-specific 
      * topic name.
      * @return ITopic
      */
     public function createTopic($topicName);
-
-    /**
-     * Returns the acknowledgement mode of the session.
-     * @return int
-     */
-    public function getAcknowledgeMode();
-
-    /**
-     * Returns the session's distinguished message listener (optional).
-     * @return IMessageListener
-     */
-    public function getMessageListener();
-
-    /**
-     * Sets the session's distinguished message listener (optional).
-     */
-    public function setMessageListener(IMessageListener $listener);
-
-    /**
-     * Unsubscribes a durable subscription that has been created by a client.
-     */
-    public function unsubscribe($name);
 }

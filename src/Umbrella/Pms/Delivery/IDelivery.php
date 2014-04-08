@@ -9,4 +9,6 @@ interface IDelivery
 {
 
     public function send();
+
+    public function retrieve();
 }
